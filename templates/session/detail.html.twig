@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <div class="titleCard">
+            <h1>Session {{session.Libelle}} </h1>
+        </div>
+        <div class="sousCardCategorie">
+            <div class="editButton">
+                <a href="" class="edit">E</a>
+                <a href="" class="delete">D</a>
+            </div>
+            <div class="categorieContainer">
+                {% for programme in session.programmes %}
+
+               
+                    <div class="cardCategorie">
+                        <div class="titleCardCategorie">
+                            <h3>{{ programme.cours.categorie.libelle }}</h3>
+                        </div>
+                        <div class="sousCategorieCard">
+                            <span>{{ programme.Cours.Libelle }}</span>
+                            <span>{{ programme.Duree }} Jours</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
