@@ -1,0 +1,231 @@
+@font-face {
+    font-family: Baloo-Regular;
+    src: url("../Font/Baloo-Regular.ttf");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Baloo-Regular', sans-serif;
+}
+
+/* *****************************************BODY**************************************************** */
+body{
+    min-height: 100vh;
+    background-image: url(../Img/SessionBackgroud.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    background-color: #8C001A;
+    height: 75px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;}
+
+nav ul li a{
+    color: white;
+    text-decoration: none;
+    text-shadow: 2px 2px 9px rgba(0,0,0,0.73);
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    font-size: 20px;
+    justify-content: space-between;
+    margin-left: 20px;
+    list-style-type: none;
+}
+
+.navAside{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+.navAside a{
+    color: white;
+    text-decoration: none;
+    background-color: #E77471;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 25px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+}
+
+.titleCard{
+    background-image: url('../Img/low-poly-grid-haikei.png');
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+    text-shadow: 2px 2px 9px rgba(0,0,0,0.73);
+}
+.sousCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.linkCard{
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 10px;
+    width: 80%;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.spanCard {
+    padding-right: 5px;
+    border-right: #8C001A solid 2px;
+    
+}
+
+.linkCard span {
+    width: 18%;
+    text-align: center;
+}
+
+.categorieContainer{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5%;
+}
+
+.edit {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    background-color: #4169E1;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    margin-right: 10px;
+}
+
+.delete {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    font-size: 32px;
+    background-color: #E77471;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.editButton{
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+    margin-right: 20px;
+    justify-content: end;
+}
+
+.sousCardCategorie{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    align-items: flex-start;
+}
+
+.titleCardCategorie{
+    background-image: url('../Img/low-poly-grid-haikei.png');
+    width: 100%;
+    color: white;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+    text-shadow: 2px 2px 9px rgba(0,0,0,0.73);
+}
+
+.cardCategorie{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 95%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+}
+
+.navAside a:hover{
+    color: #E77471;
+    background-color: white;
+}
+
+.edit:hover{
+    color: #4169E1;
+    background-color: white;
+    border: #4169E1 solid 2px;
+}
+
+.delete:hover{
+    color: #E77471;
+    background-color: white;
+    border: #E77471 solid 2px;
+}
+
+/* ******************************MediaQuery******************************* */
+@media (max-width: 700px){
+}
+
+@media screen and (min-width: 701px)and (max-width: 1080px){
+    .navAside{
+        width: 45%;
+    }
+    .navAside a{
+        width: 60%;
+    }
+}
