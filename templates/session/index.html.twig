@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="card">
+            <div class="titleCard">
+                <h1>Liste des Sessions</h1>
+            </div>
+            <div class="sousCard">
+                {% for session in sessions %}
+                    <a href="{{ path('detail_session', {'id': session.id})}}" class="linkCard">
+                        <span class="spanCard">Libelle <br> {{session.Libelle}} </span>
+                        <span class="spanCard"> date debut <br> {{session.DateDebut | date("d/m/Y")}}</span>
+                        <span class="spanCard"> date fin <br> {{session.DateFin | date("d/m/Y")}}</span>
+                        <span class="spanCard"> nb de places théoriques <br> {{session.NbDePlace}} </span>
+                        <span class="spanCard"> nb de places réservées <br> {{session.NbDePlaceRes}}</span>
+                        <span>  nb de places restantes <br> {{session.NbDePlace - session.NbDePlaceRes}} </span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

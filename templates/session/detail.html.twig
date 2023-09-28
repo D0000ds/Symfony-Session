@@ -14,17 +14,27 @@
                 <a href="" class="delete">D</a>
             </div>
             <div class="categorieContainer">
-                {% for programme in session.programmes %}
-                    <div class="cardCategorie">
-                        <div class="titleCardCategorie">
-                            <h3>{{ programme.cours.categorie.libelle }}</h3>
+                {% if session.programmes is empty %}
+                    <p>Il n'y a aucun cours sur cette session revenez plus-tard.</p>
+                {% else %}
+                    {% for categorie  in programmesParCategorie %}
+                        <div class="cardCategorie">
+                            <div class="titleCardCategorie">
+                                <h3>{{ categorie.libelle }}</h3>
+                            </div>
+                            {% for programmes in session.programmes %}
+                                {% for cours in categorie.cours %}
+                                    {% if programmes.cours.id == cours.id %}
+                                        <div class="sousCategorieCard">
+                                            <span class="spanCategorieCard"> {{programmes.cours.libelle}} </span>
+                                            <span> {{programmes.duree}} Jours</span>
+                                        </div>  
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                         </div>
-                        <div class="sousCategorieCard">
-                            <span>{{ programme.Cours.Libelle }}</span>
-                            <span>{{ programme.Duree }} Jours</span>
-                        </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

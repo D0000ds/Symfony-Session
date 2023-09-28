@@ -14,11 +14,11 @@
             <nav>
                 <ul>
                     <li><a href="{{ path('app_home')}}">HOME</a></li>
-                    <li><a href="">LISTE DES SESSIONS</a></li>
-                    <li><a href="">LISTE DES STAGIAIRES</a></li>
+                    <li><a href="{{ path('app_session')}}">LISTE DES SESSIONS</a></li>
+                    <li><a href="{{ path('app_stagiaire')}}">LISTE DES STAGIAIRES</a></li>
                 </ul>
                 <div class="navAside">
-                    <a href="">AJOUTER UN STAGIAIRE</a>
+                    <a href="{{ path('new_stagiaire')}}">AJOUTER UN STAGIAIRE</a>
                     <a href="">AJOUTER UNE SESSION</a>
                 </div>
             </nav>

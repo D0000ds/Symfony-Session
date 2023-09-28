@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StagiaireController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <div class="titleCard">
+            <h1>Fiche stagiaire de {{stagiaire.nom}} {{stagiaire.prenom}}</h1>
+        </div>
+        <div class="sousCardCategorie">
+            <div class="editButton">
+                <a href="" class="edit">E</a>
+                <a href="" class="delete">D</a>
+            </div>
+            <div class="detailStagiaire">
+                <h2>{{stagiaire.nom}} {{stagiaire.prenom}}</h2>
+                <span class="stagiaireSpan">Sexe : {{stagiaire.sexe}}</span>
+                <span class="stagiaireSpan">Date de naissance : {{stagiaire.dateDeNaissance | date("d/m/Y")}} ({{stagiaire.age}} ans)</span>
+                <span class="stagiaireSpan">Ville : {{stagiaire.ville}}</span>
+                <span class="stagiaireSpan">Courriel : {{stagiaire.email}}</span>
+                <span class="stagiaireSpan">Téléphone : {{stagiaire.telephone}}</span>
+                <div>
+                    <h2>Sessions prévues</h2> 
+                    {% if stagiaire.sessions is empty %}
+                        <p>{{stagiaire.nom}} {{stagiaire.prenom}} ne participe a aucune session pour le moment.</p>
+                    {% else %}
+                        {% for sessions in stagiaire.sessions %}
+                            <a href="{{ path('detail_session', {'id': sessions.id})}}" class="linkCard">
+                                <span class="spanCard">Libelle <br> {{sessions.Libelle}} </span>
+                                <span class="spanCard"> date debut <br> {{sessions.DateDebut | date("d/m/Y")}}</span>
+                                <span class="spanCard"> date fin <br> {{sessions.DateFin | date("d/m/Y")}}</span>
+                                <span class="spanCard"> nb de places théoriques <br> {{sessions.NbDePlace}} </span>
+                                <span class="spanCard"> nb de places réservées <br> {{sessions.NbDePlaceRes}}</span>
+                                <span>  nb de places restantes <br> {{sessions.NbDePlace - sessions.NbDePlaceRes}} </span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock body %}

@@ -40,6 +40,9 @@ class Stagiaire
     #[ORM\ManyToMany(targetEntity: Session::class, inversedBy: 'stagiaires')]
     private Collection $sessions;
 
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -161,4 +164,24 @@ class Stagiaire
     public function __toString(){
         return "dsds";
     }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getAge(): ?string
+    {
+        $now = new \DateTime();
+        $interval = $this->dateDeNaissance->diff($now);
+        return $interval->format("%Y");
+    }
+
 }
