@@ -2,16 +2,30 @@
 
 namespace App\Controller;
 
-use App\Entity\Session;
 use App\Entity\Cours;
+use App\Entity\Session;
 use App\Entity\Programme;
+use App\Form\SessionType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    #[Route('/session/new', name: 'new_session')]
+    public function new(Request $request): Response
+    {
+        $session = new Session();
+    
+        $form = $this->createForm(SessionType::class, $session);
+    
+        return $this->render('session/new.html.twig', [
+            'formSession' => $form->createView(),
+        ]);
+    }
+
     #[Route('/session/{id}', name: 'detail_session')]
     public function Detail($id, EntityManagerInterface $entityManager): Response
     {
@@ -31,6 +45,7 @@ class SessionController extends AbstractController
             'programmesParCategorie' => $programmesParCategorie,
         ]);
     }
+
 
     #[Route('/session', name: 'app_session')]
     public function index(EntityManagerInterface $entityManager): Response

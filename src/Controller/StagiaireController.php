@@ -4,9 +4,10 @@ namespace App\Controller;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
@@ -20,6 +21,18 @@ class StagiaireController extends AbstractController
         ]);
     }
 
+    #[Route('/stagiaire/new', name: 'new_stagiaire')]
+    public function new(Request $request): Response
+    {
+        $stagiaire = new Stagiaire();
+
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+
+        return $this->render('stagiaire/new.html.twig', [
+            'formStagiaire' => $form->createView(),
+        ]);
+    }
+
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
     public function Detail($id, EntityManagerInterface $entityManager): Response
     {
@@ -30,15 +43,4 @@ class StagiaireController extends AbstractController
         ]);
     }
 
-    #[Route('/stagiaire/new', name: 'new_stagiaire')]
-    public function new(Request $request): Response
-    {
-        $stagiaire = new Stagiaire();
-
-        $form = $this->createForm(StagiaireType::class, $stagiaire);
-
-        return $this->render('stagiaire/new.html.twig', [
-            'form' => $form,
-        ]);
-    }
 }
