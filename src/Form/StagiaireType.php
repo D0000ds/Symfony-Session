@@ -67,6 +67,7 @@ class StagiaireType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'label' => false,
+                'data_class' => null,
                 'attr' => [
                     'class' => 'formPicture',
                 ],

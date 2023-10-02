@@ -6,7 +6,11 @@
 <div class="container">
     <div class="card">
         <div class="titleCard">
+            {% if edit %}
             <h1>Ajouter un Stagiaire</h1>
+            {% else %}
+                <h1>Ajouter un Stagiaire</h1>
+            {% endif %}
         </div>
         <div class="sousCardForm">
             {{ form_start(formStagiaire) }}
