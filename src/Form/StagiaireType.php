@@ -16,15 +16,66 @@ class StagiaireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('sexe', TextType::class)
-            ->add('ville', TextType::class)
-            ->add('email', TextType::class)
-            ->add('telephone', TextType::class)
-            ->add('dateDeNaissance', DateType::class)
-            ->add('picture', FileType::class)
-            ->add('Ajouter', SubmitType::class)
+            ->add('nom', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'formMiddle',
+                    'placeholder' => 'Nom'
+                ],
+            ])
+            ->add('prenom', TextType::class , [
+                'label' => false,
+                'attr' => [
+                    'class' => 'formMiddle',
+                    'placeholder' => 'Prenom'
+                ],
+            ])
+            ->add('email', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form',
+                    'placeholder' => 'Email'
+                ],
+            ])
+            ->add('ville', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form',
+                    'placeholder' => 'Ville'
+                ],
+            ])
+            ->add('sexe', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'formMiddle',
+                    'placeholder' => 'Sexe',
+                ],
+            ])
+            ->add('dateDeNaissance', DateType::class, [
+                'label' => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'formMiddle',
+                ],
+            ])
+            ->add('telephone', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form',
+                    'placeholder' => 'Telephone'
+                ],
+            ])
+            ->add('picture', FileType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'formPicture',
+                ],
+            ])
+            ->add('Ajouter', SubmitType::class, [
+                'attr' => [
+                    'class' => 'formSubmit',
+                ],
+            ])
         ;
     }
 

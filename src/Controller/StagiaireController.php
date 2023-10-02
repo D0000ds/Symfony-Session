@@ -20,18 +20,54 @@ class StagiaireController extends AbstractController
             'stagiaires' => $stagiaires,
         ]);
     }
+    
 
     #[Route('/stagiaire/new', name: 'new_stagiaire')]
-    public function new(Request $request): Response
+    public function new(EntityManagerInterface $entityManager, Request $request): Response
     {
         $stagiaire = new Stagiaire();
 
         $form = $this->createForm(StagiaireType::class, $stagiaire);
 
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $stagiaire = $form->getData();
+            $entityManager->persist($stagiaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_stagiaire');
+        }
+
         return $this->render('stagiaire/new.html.twig', [
             'formStagiaire' => $form->createView(),
+            'edit' => $stagiaire->getId(),
         ]);
     }
+
+    #[Route('/stagiaire/{id}/edit', name: 'edit_stagiaire')]
+    public function edit($id ,EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($id);
+
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $stagiaire = $form->getData();
+            $entityManager->persist($stagiaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_stagiaire');
+        }
+
+        return $this->render('stagiaire/new.html.twig', [
+            'formStagiaire' => $form->createView(),
+            'edit' => $stagiaire->getId(),
+        ]);
+    }
+
 
     #[Route('/stagiaire/{id}', name: 'detail_stagiaire')]
     public function Detail($id, EntityManagerInterface $entityManager): Response

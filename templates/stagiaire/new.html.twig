@@ -8,8 +8,22 @@
         <div class="titleCard">
             <h1>Ajouter un Stagiaire</h1>
         </div>
-        <div class="sousCard">
-            {{ form(formStagiaire) }}
+        <div class="sousCardForm">
+            {{ form_start(formStagiaire) }}
+            <div class="twoForm">
+                {{ form_row(formStagiaire.nom) }}
+                {{ form_row(formStagiaire.prenom) }}
+            </div>
+            {{ form_row(formStagiaire.email) }}
+            {{ form_row(formStagiaire.ville) }}
+            <div class="twoForm">
+                {{ form_row(formStagiaire.sexe) }}
+                {{ form_row(formStagiaire.dateDeNaissance) }}
+            </div>
+            {{ form_row(formStagiaire.telephone) }}
+            {{ form_row(formStagiaire.picture) }}
+            {{ form_row(formStagiaire.Ajouter) }}
+            {{ form_end(formStagiaire) }}
         </div>
     </div>
 </div>
