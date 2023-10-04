@@ -307,6 +307,7 @@ nav ul{
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 3%;
 }
 
 .formMiddle {
@@ -339,6 +340,7 @@ nav ul{
     border: 0;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 
@@ -346,6 +348,63 @@ nav ul{
     margin-bottom: 2%;
 }
 
+.formSelect {
+    width: 100%;
+    font-size: 20px;
+    border-radius: 25px;
+    padding-left: 10px;
+    border: #8C001A solid 2px;
+    margin-bottom: 3%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.cardForm {
+    margin-top: 5%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.add-another-collection-widget {
+    color: white;
+    background-color: #8C001A;
+    width: 80%;
+    height: 35px;
+    font-size: 17px;
+    border-radius: 25px;
+    border: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 2%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.sousForm {
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 25px;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    padding: 2%;
+}
+
+.twoButton{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
 
 .navAside a:hover{
     color: #E77471;
@@ -365,6 +424,12 @@ nav ul{
 }
 
 .formSubmit:hover {
+    color: #8C001A;
+    background-color: white;
+    border: #8C001A solid 2px;
+}
+
+.add-another-collection-widget:hover{
     color: #8C001A;
     background-color: white;
     border: #8C001A solid 2px;

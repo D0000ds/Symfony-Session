@@ -32,8 +32,9 @@ class SessionController extends AbstractController
         }
     
         return $this->render('session/new.html.twig', [
-            'formSession' => $form->createView(),
+            'form' => $form->createView(),
             'edit' => $session->getId(),
+            'sessionId' => $session->getId()
         ]);
     }
 
@@ -55,8 +56,9 @@ class SessionController extends AbstractController
         }
 
         return $this->render('session/new.html.twig', [
-            'formSession' => $form->createView(),
+            'form' => $form->createView(),
             'edit' => $session->getId(),
+            'sessionId' => $session->getId()
         ]);
     }
 

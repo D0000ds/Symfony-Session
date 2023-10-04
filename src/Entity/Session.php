@@ -31,7 +31,7 @@ class Session
     #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'sessions')]
     private Collection $stagiaires;
 
-    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, cascade:['persist'])]
     private Collection $programmes;
 
     public function __construct()
@@ -156,6 +156,6 @@ class Session
     }
 
     public function __toString(){
-        return "session";
+        return $this->libelle;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Session;
+use App\Form\ProgrammeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class SessionType extends AbstractType
 {
@@ -46,6 +48,13 @@ class SessionType extends AbstractType
                 'attr' => [
                     'class' => 'formSubmit',
                 ],
+            ])
+            ->add('programmes', CollectionType::class, [
+                'entry_type' => ProgrammeType::class,
+                'prototype' => true,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ])
         ;
     }

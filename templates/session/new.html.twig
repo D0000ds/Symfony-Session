@@ -11,20 +11,60 @@
             {% else %}
             <h1>Ajouter une Session  </h1>
         {% endif %}
-                
-         
         </div>
-        <div class="sousCardForm">
-            {{ form_start(formSession) }}
-            {{ form_row(formSession.libelle) }}
-            <div class="twoForm">
-                {{ form_row(formSession.dateDebut) }}
-                {{ form_row(formSession.dateFin) }}
+        {% if edit %}
+            <div class="sousCardForm">
+                {{ form_start(form) }}
+                {{ form_row(form.libelle) }}
+                <div class="twoForm">
+                    {{ form_row(form.dateDebut) }}
+                    {{ form_row(form.dateFin) }}
+                </div>
+                {{ form_row(form.nbDePlace) }}
+                <div class="cardForm">
+                    <div class="titleCard">
+                        <h2>Programme de la session</h2>
+                    </div>
+                    <div class="form-group row ">
+                        <div class="col-form-label col-sm-2">&nbsp;</div>
+                        <div id="programme-fields-list" class="col-sm-10 remove-collection-widget"
+                            data-prototype="{{ form_widget(form.programmes.vars.prototype, {'attr': {'class': 'borders'}})|e }}"
+                            data-session="{{sessionId}}"
+                            data-widget-tags="{{ '<div class="sousForm"><p></p></div>'|e }}"
+                            data-widget-counter="{{ form.programmes|length }}">
+                        {% for programmeField in form.programmes %}
+                            <div class="sousForm">
+                                <p>
+                                    {{ form_errors(programmeField) }}
+                                    {{ form_widget(programmeField, {'attr': {'class': 'borders'}}) }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="twoButton">
+                        <button type="button" 
+                            class="add-another-collection-widget button"
+                            data-list-selector="#programme-fields-list">Ajouter un nouveau cours</button>
+                    </div>
+                </div>
+                {{ form_row(form.Ajouter) }}
+                {{ form_end(form) }}
             </div>
-            {{ form_row(formSession.nbDePlace) }}
-            {{ form_row(formSession.Ajouter) }}
-            {{ form_end(formSession) }}
-        </div>
+        {% else %}
+            <div class="sousCardForm">
+                {{ form_start(form) }}
+                {{ form_row(form.libelle) }}
+                <div class="twoForm">
+                    {{ form_row(form.dateDebut) }}
+                    {{ form_row(form.dateFin) }}
+                </div>
+                {{ form_row(form.nbDePlace) }}
+                {{ form_row(form.Ajouter) }}
+                {% do form.programmes.setRendered %}
+                {{ form_end(form) }}
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock body %}

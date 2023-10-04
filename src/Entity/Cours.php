@@ -89,6 +89,6 @@ class Cours
     }
 
     public function __toString(){
-        return "cours";
+        return $this->libelle;
     }
 }
