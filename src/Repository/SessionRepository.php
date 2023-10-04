@@ -35,14 +35,16 @@ class SessionRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
-
-//    public function findOneBySomeField($value): ?Session
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findAllUserInSession($id)
+    {
+        return $this->createQueryBuilder('s')
+        ->select('*')
+        ->from('stagiaire_session', 'ss')
+        ->innerJoin('session', 's', 'ON', 'ss.session_id = s.id')
+        ->innerJoin('stagiaire', 'st', 'ON', 'ss.stagiaire_id = stagiaire.id')
+        ->where('s.id = :id')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
 }
