@@ -11,7 +11,7 @@
         <div class="sousCardCategorie">
             <div class="editButton">
                 <a href=" {{ path('edit_stagiaire', {'id': stagiaire.id})}} " class="edit">E</a>
-                <a href="" class="delete">D</a>
+                <a href="{{ path('del_stagiaire', {'id': stagiaire.id})}}" class="delete">D</a>
             </div>
             <div class="detailStagiaire">
                 <h2>{{stagiaire.nom}} {{stagiaire.prenom}}</h2>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cours;
 use App\Entity\Session;
 use App\Entity\Programme;
+use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,10 +66,14 @@ class SessionController extends AbstractController
     #[Route('/session/{id}', name: 'detail_session')]
     public function detail($id, EntityManagerInterface $entityManager): Response
     {
+        
         $session = $entityManager->getRepository(Session::class)->find($id);
+        $userInSession = $entityManager->getRepository(Session::class)->findAllUserInSession($id);
 
+    
         $programmesParCategorie = [];
 
+        
         foreach($session->getProgrammes() as $programme){
             $categorie = $programme->getCours()->getCategorie();
             $programmesParCategorie[] = $categorie;
@@ -79,6 +84,7 @@ class SessionController extends AbstractController
         return $this->render('session/detail.html.twig', [
             'session' => $session,
             'programmesParCategorie' => $programmesParCategorie,
+            'userInSession' => $userInSession,
         ]);
     }
 
@@ -91,5 +97,37 @@ class SessionController extends AbstractController
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions,
         ]);
+    }
+
+    #[Route('/session/del/{id}/{idSta}', name: 'delete_stagiaire_session')]
+    public function deleteStagiaire($id, EntityManagerInterface $entityManager, $idSta): Response
+    {
+        $session = $entityManager->getRepository(Session::class)->find($id);
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($idSta);
+        $session->removeStagiaire($stagiaire);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_session', ['id' => $id]);
+    }
+
+    #[Route('/session/add/{id}/{idSta}', name: 'add_stagiaire_session')]
+    public function addStagiaire($id, EntityManagerInterface $entityManager, $idSta): Response
+    {
+        $session = $entityManager->getRepository(Session::class)->find($id);
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->find($idSta);
+        $session->addStagiaire($stagiaire);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_session', ['id' => $id]);
+    }
+
+    #[Route('/session/del/{id}', name: 'del_session')]
+    public function Delete($id, EntityManagerInterface $entityManager): Response
+    {
+        $session = $entityManager->getRepository(Session::class)->find($id);
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_session');
     }
 }

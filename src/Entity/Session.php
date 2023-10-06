@@ -28,7 +28,7 @@ class Session
     #[ORM\Column]
     private ?int $nbDePlace = null;
 
-    #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'sessions')]
+    #[ORM\ManyToMany(targetEntity: Stagiaire::class, mappedBy: 'sessions',)]
     private Collection $stagiaires;
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, cascade:['persist'])]

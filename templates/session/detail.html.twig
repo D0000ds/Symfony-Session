@@ -11,7 +11,7 @@
         <div class="sousCardCategorie">
             <div class="editButton">
                 <a href="{{ path('edit_session', {'id': session.id}) }}" class="edit">E</a>
-                <a href="" class="delete">D</a>
+                <a href="{{ path('del_session', {'id': session.id}) }}" class="delete">D</a>
             </div>
             <div class="categorieContainer">
                 {% if session.programmes is empty %}
@@ -34,6 +34,51 @@
                             {% endfor %}
                         </div>
                     {% endfor %}
+                    <div class="cardCategorie">
+                        <div class="titleCardCategorie">
+                            <h3>Stagiaires</h3>
+                        </div>
+                        <div class="inSession">
+                            <div class="titleCardCategorie">
+                                <h4>Inscrit a la session</h4>
+                            </div>
+                            <div class="inSessionCard">
+                                {% if session.stagiaires is empty%}
+                                    <p class="pSession">Il n'y a aucun stagiaires inscrit a cette session</p>
+                                {% else %}
+                                    {% for stagiaire in session.stagiaires %}
+                                        <div class="sousinNotSession">
+                                            <a href="{{ path('detail_stagiaire', {'id': stagiaire.id})}}" class="linkSession">
+                                                {{stagiaire.nom}}
+                                                {{stagiaire.prenom}}
+                                            </a>
+                                            <aside class="asideSession">
+                                                <a href="{{ path('delete_stagiaire_session', {'id': session.id, 'idSta': stagiaire.id}) }}" class="btnSup">Supprimer</a> 
+                                            </aside>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="inNotSession">
+                            <div class="titleCardCategorie">
+                                <h4>Non inscrit a la session</h4>
+                            </div>
+                            <div class="inSessionCard">
+                                {% for user in userInSession %}
+                                <div class="sousinNotSession">
+                                    <a href="{{ path('detail_stagiaire', {'id': user.id})}}" class="linkSession">
+                                        {{user.nom}}
+                                        {{user.prenom}}
+                                    </a>
+                                    <aside class="asideSession">
+                                        <a href="{{ path('add_stagiaire_session', {'id': session.id, 'idSta': user.id}) }}" class="btnAdd">Ajouter</a>
+                                    </aside>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
