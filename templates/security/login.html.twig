@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="card">
+            <div class="titleCard">
+                <h1>Connexion</h1>
+            </div>
+            <div class="sousCardForm">
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form" autocomplete="email" placeholder="Email" required autofocus>
+                <input type="password" name="password" id="inputPassword" class="form" placeholder="Mot de passe" autocomplete="current-password" required>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="btnLogin">
+                    <button class="add-another-collection-widget" type="submit">Connexion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

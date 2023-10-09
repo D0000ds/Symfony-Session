@@ -15,12 +15,28 @@
                 <ul>
                     <li><a href="{{ path('app_home')}}">HOME</a></li>
                     <li><a href="{{ path('app_session')}}">LISTE DES SESSIONS</a></li>
-                    <li><a href="{{ path('app_stagiaire')}}">LISTE DES STAGIAIRES</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('app_stagiaire')}}">LISTE DES STAGIAIRES</a></li>
+                    {% endif %}
                 </ul>
-                <div class="navAside">
-                    <a href="{{ path('new_stagiaire')}}">AJOUTER UN STAGIAIRE</a>
-                    <a href="{{ path('new_session')}}">AJOUTER UNE SESSION</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="navAside">
+                        <a href="{{ path('new_stagiaire')}}">AJOUTER UN STAGIAIRE</a>
+                        <a href="{{ path('new_session')}}">AJOUTER UNE SESSION</a>
+                    </div>
+                {% endif %}
+                {% if app.user %}
+                <div class="navLog">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{path('app_register')}}">Inscription</a>
+                    {% endif %}
+                    <a href="{{path('app_logout')}}">Déconnexion</a>
                 </div>
+                {% else %}
+                    <div class="navLog">
+                        <a href="{{path('app_login')}}">Connexion</a>
+                    </div>
+                {% endif %}
             </nav>
         </header>
         {% block body %}{% endblock %}
